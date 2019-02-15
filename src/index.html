@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FEW 100 - Tip Calculator</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header class="page-header">
+            <h1>Tip Calculator</h1>
+        </header>
+
+        <!-- USER INPUT FIELD -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+            </div>
+            <input id="billInputField" type="number" step=".01" class="form-control" aria-label="Amount">
+        </div>
+
+        <!-- TIP PERCENTAGE -->
+        <div>
+            <div class="btn-group" role="group" aria-label="Tip Percent Toggles">
+                <button id="toggle10PercentTip" type="button" class="btn btn-secondary" value="10">10%</button>
+                <button id="toggle15PercentTip" type="button" class="btn btn-secondary" value="15">15%</button>
+                <button id="toggle20PercentTip" type="button" class="btn btn-secondary" value="20">20%</button>
+            </div>
+            <div>
+                You are tipping &nbsp;<span id="toggleTipPercentage">**</span>%
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary-section">
+            <div class="row">
+                Bill Amount: $<span id="summaryBillAmount"></span>
+            </div>
+            <div class="row">
+                Tip Percentage:&nbsp;<span id="summaryTipPercentage"></span>%
+            </div>
+            <div class="row">
+                Amount of tip: $<span id="summaryTipAmount"></span>
+            </div>
+            <div class="row">
+                Total to be Paid: $<span id="summaryTotalAmount"></span>
+            </div>
+        </div>
+
+        <!-- FIN -->
+    </div>
+</body>
+</html>

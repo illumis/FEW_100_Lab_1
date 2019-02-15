@@ -1,0 +1,55 @@
+/* BILL INPUT SECTION */
+
+.is-negative {
+    border:1px solid red;
+}
+/* .is-negative, .is-negative:focus {
+    border:1px solid red;
+} */
+.is-negative:focus {
+    border-color: red;
+    box-shadow: 0 1px 1px rgba(255, 0, 0, .5) inset, 0 0 8px rgba(255, 0, 0, 1);
+    outline: 0 none;
+}
+
+input:focus {
+    border: unset;
+}
+
+/* TIP TOGGLE SECTION */
+
+
+/* SUMMARY SECTION */
+.summary-section {
+    margin: 15px;
+}
+.row {
+    border: 1px solid lightgrey;
+    border-bottom: none;
+    padding: 10px
+}
+.row:first-child {
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+.row:last-child {
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+    border-bottom: 1px solid lightgrey;
+}
+
+/* PLACEHOLDER FOR OLD/UNUSED CSS */
+/* h1 {
+    color:red;
+} */
+
+/* .list-group-item {
+    background-color: grey;
+    border-color: grey;
+    color: whitesmoke;
+    font-weight: 500;
+}
+.list-group-item.active {
+    background-color: rgb(182, 179, 179);
+    border-color: rgb(182, 179, 179);
+} */
