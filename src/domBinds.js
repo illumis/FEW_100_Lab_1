@@ -1,18 +1,19 @@
-
 export function bindVarsToElements(jsHookedDOM) {
     jsHookedDOM.computed = {
         computedTipAmount: {
             element: document.getElementById('summaryTipAmount'),
             set: function() {
-                let newRawValue = jsHookedDOM.bill.value * (jsHookedDOM.tipToggles.value/100);
-                this.element.innerText = isNaN(newRawValue)?'':newRawValue.toFixed(2);
+                this.element.innerText = jsHookedDOM.bill.value && jsHookedDOM.tipToggles.value
+                    ? formatAsCurrency(jsHookedDOM.bill.value * (jsHookedDOM.tipToggles.value/100))
+                    : '';
             }
         },
         computedBillTotal: {
             element: document.getElementById('summaryTotalAmount'),
             set: function () {
-                let newRawValue = jsHookedDOM.bill.value+(jsHookedDOM.bill.value * (jsHookedDOM.tipToggles.value/100));
-                this.element.innerText = isNaN(newRawValue)?'':newRawValue.toFixed(2);
+                this.element.innerText = jsHookedDOM.bill.value && jsHookedDOM.tipToggles.value
+                ? formatAsCurrency(jsHookedDOM.bill.value+(jsHookedDOM.bill.value * (jsHookedDOM.tipToggles.value/100)))
+                : '';
             }
         },
     };
@@ -27,7 +28,7 @@ export function bindVarsToElements(jsHookedDOM) {
                 billAmount: {
                     isCurrency: true,
                     element: document.getElementById('summaryBillAmount'),
-                    set: helper_setHtmlElement
+                    set: setNonComputedObserver
                 },
                 computedTip: jsHookedDOM.computed.computedTipAmount,
                 computedBill: jsHookedDOM.computed.computedBillTotal,
@@ -43,11 +44,11 @@ export function bindVarsToElements(jsHookedDOM) {
             observers: {
                 toggleTipObserver_Description: {
                     element: document.getElementById('toggleTipPercentage'),
-                    set: helper_setHtmlElement
+                    set: setNonComputedObserver
                 },
                 toggleTipObserver_Summary: {
                     element: document.getElementById('summaryTipPercentage'),
-                    set: helper_setHtmlElement
+                    set: setNonComputedObserver
                 },
                 computedTip: jsHookedDOM.computed.computedTipAmount,
                 computedBill: jsHookedDOM.computed.computedBillTotal,
@@ -58,7 +59,10 @@ export function bindVarsToElements(jsHookedDOM) {
     return jsHookedDOM;
 }
 
-//HELPER - Element Setters
-function helper_setHtmlElement(newValue) {
-    this.element.innerText = this.isCurrency?newValue.toFixed(2):newValue;
+function setNonComputedObserver(newValue) {
+    this.element.innerText = this.isCurrency&&newValue?formatAsCurrency(newValue):newValue
+}
+
+function formatAsCurrency(newValue){
+    return newValue?newValue.toFixed(2):newValue;
 }
